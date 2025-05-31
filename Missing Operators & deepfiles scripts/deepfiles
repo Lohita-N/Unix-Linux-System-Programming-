@@ -1,0 +1,4 @@
+directory="${1:-.}"
+deepest_depth=$(find "$directory" -type f | awk -F'/' '{print NF}' | sort -nr | head -n 1)
+echo "Max depth: $deepest_depth"
+find "$directory" -type f | awk -F'/' -v max_depth="$deepest_depth" 'NF == max_depth'
