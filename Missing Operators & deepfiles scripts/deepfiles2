@@ -1,0 +1,5 @@
+directory="${1:-.}"
+deepest_depth=$(find "$directory" -type f | countslash | sort -nr | head -n 1 | cut -d' ' -f1)
+echo "Max depth: $deepest_depth"
+find "$directory" -type f | countslash | awk -v max_depth="$deepest_depth" '$1 == max_depth {print substr($0, index($0,$2))}'
+
